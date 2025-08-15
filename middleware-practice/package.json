@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "zod": "^4.0.17"
+  },
+  "name": "middleware-practice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "echo \"No build step defined\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

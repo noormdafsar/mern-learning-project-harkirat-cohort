@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do's App</title>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* height: 100vh; */
+      "
+    >
+      <h2>Welcome to the To-Do's App!</h2>
+    </div>
+    <div
+      class="parent"
+      style="
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+      "
+    >
+      <input
+        type="text"
+        placeholder="Enter your task here"
+        style="
+          width: 300px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        "
+        id="taskInput"
+      />
+      <button
+        style="
+          width: 100px;
+          padding: 10px;
+          border: 1px solid blue;
+          border-radius: 20px;
+          cursor: pointer;
+        "
+        id="btn"
+        onclick="addTask()"
+      >
+        Add task
+      </button>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
