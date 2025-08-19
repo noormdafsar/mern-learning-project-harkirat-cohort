@@ -7,7 +7,7 @@
 </head>
 <body>
     <input type="text" placeholder="Enter your task here" id="taskInput" style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-    <button id="btn" style="width: 100px; padding: 10px; border: 1px solid blue; border-radius: 20px; cursor: pointer;">Add task</button>
+    <button id="btn" onclick="addTodo()" style="width: 100px; padding: 10px; border: 1px solid blue; border-radius: 20px; cursor: pointer;">Add task</button>
     <div id="root"></div>
 
     <script>
@@ -49,7 +49,7 @@
                 root.appendChild(todoItem);
             });
         }
-        document.getElementById('btn').addEventListener('click', addTodo);
+        // document.getElementById('btn').addEventListener('click', addTodo);
     </script>
 </body>
 </html>
