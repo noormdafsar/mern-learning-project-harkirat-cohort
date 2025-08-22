@@ -81,7 +81,17 @@
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
                 editButton.onclick = () => {
-                    const newTitle = prompt('Edit your task:', todo.title);
+                    const h1 = todoComponent.querySelector('h1');
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = todo.title;
+                    input.style.width = '200px';
+                    todoComponent.replaceChild(input, h1);
+                    editButton.textContent = 'Save';
+                    editButton.onclick = () => {
+                        todo.title = input.value;
+                        render();
+                    };
                     if (newTitle) {
                         todo.title = newTitle;
                         render();
