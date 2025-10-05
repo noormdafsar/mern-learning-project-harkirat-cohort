@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Render Function</title>
+</head>
+<body>
+    <input type="text" placeholder="Enter your task here" id="taskInput" style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+    <button id="btn" onclick="addTodo()" style="width: 100px; padding: 10px; border: 1px solid blue; border-radius: 20px; cursor: pointer;">Add task</button>
+    <button onclick="deleteLastTodo()">Delete last todo</button>
+    <button onclick="deleteFirstTodo()">Delete first todo</button>
+    <div id="root"></div>
+
+    <script>
+        let todos = [];
+        function addTodo(){
+            const input = document.querySelector('input');
+            todos.push({
+                title: input.value
+            });
+            input.value = ''; // Clear the input field after adding the task
+            render();
+        }
+
+        function deleteFirstTodo() {
+            todos.splice(0, 1);
+            render();
+        }
+
+        function deleteLastTodo() {
+            todos.splice(todos.length - 1, 1);
+            render();
+        }
+
+        // function render() {
+        //     const root = document.getElementById('root');
+        //     root.innerHTML = '';
+        //     todos.forEach(todo => {
+        //         const todoItem = document.createElement('div');
+        //         const h1 = document.createElement('h1');
+        //         h1.textContent = todo.title;
+        //         const edit = document.createElement('button');
+        //         edit.textContent = 'Edit';
+        //         edit.onclick = () => {
+        //             const newTitle = prompt('Edit your task:', todo.title);
+        //             if (newTitle) {
+        //                 todo.title = newTitle;
+        //                 render();
+        //             }
+        //         };
+        //         const btn = document.createElement('button');
+        //         btn.textContent = 'Delete';
+        //         btn.onclick = () => {
+        //             todos = todos.filter(t => t !== todo);
+        //             render();
+        //         };
+        //         todoItem.appendChild(h1);
+        //         todoItem.appendChild(edit);
+        //         todoItem.appendChild(btn);
+        //         root.appendChild(todoItem);
+        //     });
+        // }
+        // document.getElementById('btn').addEventListener('click', addTodo);
+        function createTodoComponent(todo){
+            const div = document.createElement('div');
+            const h1 = document.createElement('h1');
+            const button = document.createElement('button');
+            button.textContent = 'Delete';
+            h1.textContent = todo.title;
+            div.appendChild(h1);
+            div.appendChild(button);
+            return div;
+        }
+
+        function render(){
+            const root = document.querySelector('#root');
+            root.innerHTML = ''; // Clear the root element
+            todos.forEach(todo => {
+                const todoComponent = createTodoComponent(todo);
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.onclick = () => {
+                    const h1 = todoComponent.querySelector('h1');
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = todo.title;
+                    input.style.width = '200px';
+                    todoComponent.replaceChild(input, h1);
+                    editButton.textContent = 'Save';
+                    editButton.onclick = () => {
+                        todo.title = input.value;
+                        render();
+                    };
+                    if (newTitle) {
+                        todo.title = newTitle;
+                        render();
+                    }
+                };
+                const deleteButton = todoComponent.querySelector('button');
+                deleteButton.onclick = () => {
+                    todos = todos.filter(t => t !== todo);
+                    render();
+                };
+                todoComponent.appendChild(editButton);
+                root.appendChild(todoComponent);
+            })
+        }
+    </script>
+</body>
+</html>
